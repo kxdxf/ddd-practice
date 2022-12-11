@@ -6,7 +6,7 @@ class FullName
     @last_name = last_name
   end
 
-  def equal?(other)
+  def equals?(other)
     first_name.value == other.first_name.value &&
       last_name.value == other.last_name.value
   end

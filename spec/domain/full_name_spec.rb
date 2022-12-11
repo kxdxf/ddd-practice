@@ -17,23 +17,23 @@ RSpec.describe FullName, "#initialize" do
   end
 end
 
-RSpec.describe FullName, "#equal?" do
+RSpec.describe FullName, "#equals?" do
   it 'first_name, last_nameが等しい場合はtrueを返す' do
     fullname_a = FullName.new(Name.new('keisuke'), Name.new('nakasuga'))
     fullname_b = FullName.new(Name.new('keisuke'), Name.new('nakasuga'))
-    expect(fullname_a.equal?(fullname_b)).to be_truthy
+    expect(fullname_a.equals?(fullname_b)).to be_truthy
   end
 
   it 'first_nameが異なる場合はfalseを返す' do
     fullname_a = FullName.new(Name.new('keisuke'), Name.new('nakasuga'))
     fullname_b = FullName.new(Name.new('k'), Name.new('nakasuga'))
-    expect(fullname_a.equal?(fullname_b)).to be_falsey
+    expect(fullname_a.equals?(fullname_b)).to be_falsey
   end
 
   it 'last_nameが異なる場合はfalseを返す' do
     fullname_a = FullName.new(Name.new('keisuke'), Name.new('nakasuga'))
     fullname_b = FullName.new(Name.new('keisuke'), Name.new('n'))
-    expect(fullname_a.equal?(fullname_b)).to be_falsey
+    expect(fullname_a.equals?(fullname_b)).to be_falsey
   end
 end
 
