@@ -12,7 +12,7 @@ class FullName
   end
 end
 
-class Name
+class UserName
   attr_reader :value
 
   def initialize(value)
