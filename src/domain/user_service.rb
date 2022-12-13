@@ -1,9 +1,14 @@
+require_relative '../../src/domain/user_repository'
 require 'sqlite3'
 
 class UserService
-  def self.exists?(user)
-    database = SQLite3::Database.new('ddd-practice')
-    sql = "SELECT * FROM users WHERE name = :name"
-    database.execute(sql, name: user.name).size == 1
+  def exists?(user)
+    !repository.find(user.name).nil?
+  end
+
+  private
+
+  def repository
+    @repository ||= UserRepository.new
   end
 end

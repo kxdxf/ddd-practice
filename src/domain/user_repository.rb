@@ -1,3 +1,4 @@
+require_relative '../../src/domain/user'
 require 'sqlite3'
 
 class UserRepository
@@ -6,7 +7,11 @@ class UserRepository
     database.execute(sql, user.id, user.name, user.name)
   end
 
-  def find
+  def find(name)
+    sql = 'SELECT * FROM users WHERE name = ?'
+    database.execute(sql, name).then do |result|
+      result.empty? ? nil : User.new(result[0][0], result[0][1])
+    end
   end
 
   def exists?(user)

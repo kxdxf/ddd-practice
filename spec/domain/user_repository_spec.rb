@@ -12,7 +12,7 @@ RSpec.describe UserRepository, "#save" do
     end
 
     it 'ユーザー情報をDBに登録できること' do
-      user = User.new('keisuke')
+      user = User.new(nil, 'keisuke')
       repository.save(user)
 
       sql = 'SELECT * FROM users WHERE id = ?'
@@ -26,7 +26,7 @@ RSpec.describe UserRepository, "#save" do
 
   context 'DBにuserが存在する' do
     before do
-      user = User.new('keisuke')
+      user = User.new(nil, 'keisuke')
       repository.save(user)
     end
 
@@ -36,6 +36,15 @@ RSpec.describe UserRepository, "#save" do
     end
 
     it 'ユーザー情報をDBに登録できること' do
+      user = User.new(nil, 'keisuke')
+      repository.save(user)
+
+      sql = 'SELECT * FROM users WHERE id = ?'
+      result = database.execute(sql, user.id)
+
+      expect(result.size).to eq(1)
+      expect(user.id).to eq(result[0][0])
+      expect(user.name).to eq(result[0][1])
     end
   end
 end
