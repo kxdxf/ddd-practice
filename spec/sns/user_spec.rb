@@ -15,5 +15,9 @@ RSpec.describe User, "#initialize" do
     it '引数nameがnilの場合はArgumentErrorを発生させる' do
       expect { described_class.new(nil, nil) }.to raise_error(ArgumentError)
     end
+
+    it 'idとしてUserIdオブジェクトが取得できること' do
+      expect(described_class.new(id: nil, name: 'keisuke').id).to be_kind_of(UserId)
+    end
   end
 end
