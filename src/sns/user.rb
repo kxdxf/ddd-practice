@@ -25,8 +25,17 @@ class UserId
   attr_reader :value
 
   def initialize(value)
-    raise ArgumentError.new("valueがnullまたは空文字です。") if value.nil? || value.empty?
+    raise ArgumentError.new("valueがnilまたは空文字です。") if value.nil? || value.empty?
     @value = value
   end
 end
 
+class UserName
+  attr_reader :value
+
+  def initialize(value)
+    raise ArgumentError.new('valueがnilです。') if value.nil?
+    raise ArgumentError.new("ユーザー名は3文字以上です。") if value.size < 3
+    @value = value
+  end
+end
